@@ -731,6 +731,7 @@ Plugins[] = ExampleAPI
 Plugins[] = ExampleRssWidget
 Plugins[] = Provider
 Plugins[] = Feedback
+Plugins[] = Monolog
 
 Plugins[] = Login
 Plugins[] = UsersManager
