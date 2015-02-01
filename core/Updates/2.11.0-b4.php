@@ -15,6 +15,9 @@ class Updates_2_11_0_b4 extends Updates
 {
     static function update()
     {
-        Manager::getInstance()->activatePlugin('Monolog');
+        try {
+            Manager::getInstance()->activatePlugin('Monolog');
+        } catch (\Exception $e) {
+        }
     }
 }
