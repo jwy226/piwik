@@ -88,8 +88,15 @@ class ContainerFactory
         $plugins = Config::getInstance()->Plugins['Plugins'];
 
         foreach ($plugins as $plugin) {
-            $file = Manager::getPluginsDirectory() . $plugin . '/plugin.php';
-            if (file_exists($file)) {
+            $file = Manager::getPluginsDirectory() . $plugin . '/config.php';
+
+            if (! file_exists($file)) {
+                continue;
+            }
+
+            $fileContent = require $file;
+
+            if (is_array($fileContent)) {
                 $builder->addDefinitions($file);
             }
         }
