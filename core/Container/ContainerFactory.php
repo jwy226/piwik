@@ -85,7 +85,7 @@ class ContainerFactory
 
     private function addPluginConfigs(ContainerBuilder $builder)
     {
-        $plugins = Config::getInstance()->Plugins['Plugins'];
+        $plugins = Manager::getInstance()->getActivatedPlugins();
 
         foreach ($plugins as $plugin) {
             $file = Manager::getPluginsDirectory() . $plugin . '/config.php';
