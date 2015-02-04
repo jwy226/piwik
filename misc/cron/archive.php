@@ -61,6 +61,9 @@ if (isset($_SERVER['argv']) && Piwik\Console::isSupported()) {
     $console->run();
 } else { // if running via web request, use CronArchive directly
 
+    // Load plugins before the container is created
+    Piwik\Plugin\Manager::getInstance()->loadActivatedPlugins();
+
     if (Piwik\Common::isPhpCliMode()) {
         // We can run the archive in CLI with `php-cgi` so we have to configure the container/logger
         // just like for CLI
