@@ -27,9 +27,6 @@ set_time_limit(0);
 $GLOBALS['PIWIK_TRACKER_DEBUG'] = false;
 define('PIWIK_ENABLE_DISPATCH', false);
 
-// Load plugins before the container is created
-Piwik\Plugin\Manager::getInstance()->loadActivatedPlugins();
-
 if (Piwik\Common::isPhpCliMode()) {
     StaticContainer::setEnvironment('cli');
     /** @var ConsoleHandler $consoleLogHandler */

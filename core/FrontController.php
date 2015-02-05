@@ -314,9 +314,6 @@ class FrontController extends Singleton
 
         $exceptionToThrow = self::createConfigObject();
 
-        // Load plugins before creating the container
-        Plugin\Manager::getInstance()->loadActivatedPlugins();
-
         $tmpPath = StaticContainer::get('path.tmp');
 
         $directoriesToCheck = array(
@@ -335,6 +332,7 @@ class FrontController extends Singleton
         $this->handleSSLRedirection();
 
         Plugin\Manager::getInstance()->loadPluginTranslations();
+        Plugin\Manager::getInstance()->loadActivatedPlugins();
 
         if ($exceptionToThrow) {
             throw $exceptionToThrow;

@@ -31,19 +31,21 @@ class Console extends Application
         );
 
         $this->getDefinition()->addOption($option);
+
+        StaticContainer::setEnvironment('cli');
     }
 
     public function doRun(InputInterface $input, OutputInterface $output)
     {
+        $this->initPiwikHost($input);
+        $this->initConfig($output);
+        $this->initLoggerOutput($output);
+
         try {
             self::initPlugins();
         } catch(\Exception $e) {
             // Piwik not installed yet, no config file?
         }
-
-        $this->initPiwikHost($input);
-        $this->initConfig($output);
-        $this->initLoggerOutput($output);
 
         $commands = $this->getAvailableCommands();
 
